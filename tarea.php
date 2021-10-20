@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TAREAS - VISUALIAR TAREA</title>
-  <link rel="stylesheet" href="estilos_tareas.css">
+  <title>WORKERHUB - VISUALIZAR TAREA</title>
+  <link rel="stylesheet" href="estilos_workershub.css">
 </head>
 <body>
 <?php
-include_once 'ORMtareas.php';
+include_once 'ORMWorkersHub.php';
 
 echo "<a href=\"index.php\">Volver al índice</a><br>";
 
