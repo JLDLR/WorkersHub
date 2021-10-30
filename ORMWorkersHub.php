@@ -2,6 +2,7 @@
     class Usuario{
       public $num_usuario;
       public $nombre;
+      public $contrasenna;
       public $cargo;
       public $telefono;
       public $email;

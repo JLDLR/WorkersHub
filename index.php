@@ -123,19 +123,19 @@
         "
         <table>
           <tr>
-            <th>Nombre</th><th>Fecha de nacimiento</th><th>Nacionalidad</th><th>Biografía</th><th>Genero</th>
+            <th>Nombre</th><th>Cargo</th><th>TElefono</th><th>E-Mail</th>
           </tr>
           <tr>
             <td>".$usuario->nombre."</td>
-            <td>".$usuario->fecna."</td>
-            <td>".$usuario->nacionalidad."</td>
-            <td>".$usuario->biografia."</td>";
-        if($usuario->genero){ //If de control para saber si se ha especificado el género para insertarlo en la tabla.
-          echo
-          "
-            <td>".$usuario->genero."</td>
-          ";
-        }
+            <td>".$usuario->cargo."</td>
+            <td>".$usuario->telefono."</td>
+            <td>".$usuario->email."</td>";
+        // if($usuario->genero){ //If de control para saber si se ha especificado el género para insertarlo en la tabla.
+        //   echo
+        //   "
+        //     <td>".$usuario->genero."</td>
+        //   ";
+        // }
         echo //Último echo para cerrar la fila de datos y la tabla.
         "
           </tr>
