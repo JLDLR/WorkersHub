@@ -9,16 +9,16 @@
 <body>
   <?php
     //Bloque de funciones
-    function registrar_usuario($nombre, $contrasenna, $cargo, $telefono, $email, $isAdmin){
+    function registrar_usuario($nombre, $contrasenna, $cargo, $telefono, $email){
       $db_servername = "localhost";
       $db_username = "root";
       $db_password = "";
-      $db_name = "bbdd_usuarios";
+      $db_name = "bbdd_workershub";
 
         $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
-        $sql = "INSERT INTO tabla_usuarios(nombre, contraseña, cargo, telefono, email, isAdmin) VALUES(?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO tabla_usuarios(nombre, contraseña, cargo, telefono, email) VALUES(?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssis", $nombre, $contrasenna, $cargo, $telefono, $email, $isAdmin);
+        $stmt->bind_param("sssis", $nombre, $contrasenna, $cargo, $telefono, $email);
         $stmt->execute();
         $stmt->close();
         $conn->close();
@@ -34,22 +34,19 @@
       <input type=\"password\" name=\"contrasenna\" id=\"contrasenna\" required>
       <br>
       <label for=\"cargo\">Cargo:</label>
-      <input type=\"date\" name=\"cargo\" id=\"cargo\" required>
+      <input type=\"text\" name=\"cargo\" id=\"cargo\" required>
       <br>
-      <label for=\"telefono\">telefono:</label>
+      <label for=\"telefono\">Teléfono:</label>
       <input type=\"text\" name=\"telefono\" id=\"telefono\" required>
       <br>
       <label for=\"email\">E-Mail:</label><br>
-      <textarea name=\"email\" id=\"email\" rows=\"4\" cols=\"50\" required></textarea>
-      <br>
-      <label for=\"isAdmin\">¿Es este usuario administrador?</label><br>
-      <input type=\"checkbox\" name=\"isAdmin\" id=\"isAdmin\">
+      <input type=\"email\" name=\"email\" id=\"email\" required>
       <br>
       <button type=\"submit\" name=\"registrar_usuario\">Registrar usuario</button>
     </form>
     ";
     //Bloque de logica
-    if(isset($_POST["registrarme"])){
+    if(isset($_POST["registrar_usuario"])){
       $nombre = $_POST["nombre"];
       $contrasenna = $_POST["contrasenna"];
       $cargo = $_POST["cargo"];
