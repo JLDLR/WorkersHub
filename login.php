@@ -14,7 +14,7 @@
       $db_servername = "localhost";
       $db_username = "root";
       $db_password = "";
-      $db_name = "bbdd_usuarios";
+      $db_name = "bbdd_workershub";
       $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
       $sql = "SELECT nombre, contrasenna FROM tabla_usuarios WHERE nombre = ? AND contrasenna = ?";
       $stmt = $conn->prepare($sql);

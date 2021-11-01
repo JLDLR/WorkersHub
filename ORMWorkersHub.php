@@ -25,7 +25,7 @@
       $db_servername = "localhost";
       $db_username = "root";
       $db_password = "";
-      $db_name = "bbdd_usuarios";
+      $db_name = "bbdd_workershub";
       $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
       $sql = "SELECT num_usuario, nombre, cargo, telefono, email, isAdmin FROM tabla_usuarios WHERE num_usuario = ?";
       $stmt = $conn->prepare($sql);
@@ -59,7 +59,7 @@
       $db_servername = "localhost";
       $db_username = "root";
       $db_password = "";
-      $db_name = "bbdd_usuarios";
+      $db_name = "bbdd_workershub";
       $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
       if($opcion == "incompleta"){
         $sql = "SELECT titulo, descripcion, fecha_entrega, id_tarea, estado FROM tabla_tareas WHERE num_usuario = ? AND estado = ?";
@@ -112,7 +112,7 @@
       $db_servername = "localhost";
       $db_username = "root";
       $db_password = "";
-      $db_name = "bbdd_usuarios";
+      $db_name = "bbdd_workershub";
       $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
       $sql = "SELECT titulo, descripcion, fecha_entrega, id_tarea, estado FROM tabla_tareas WHERE id_tarea = ?";
       $stmt = $conn->prepare($sql);
@@ -131,7 +131,7 @@
       $db_servername = "localhost";
       $db_username = "root";
       $db_password = "";
-      $db_name = "bbdd_usuarios";
+      $db_name = "bbdd_workershub";
       $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
       $sql = "UPDATE tabla_tareas SET estado= ? WHERE id_tarea = ?";
       $stmt = $conn->prepare($sql);
@@ -144,7 +144,7 @@
       $db_servername = "localhost";
       $db_username = "root";
       $db_password = "";
-      $db_name = "bbdd_usuarios";
+      $db_name = "bbdd_workershub";
       $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
       $sql = "INSERT INTO tabla_tareas(num_usuario, titulo, descripcion, fecha_entrega) VALUES (?, ?, ?, ?)";
       $stmt = $conn->prepare($sql);
@@ -158,7 +158,7 @@
       $db_servername = "localhost";
       $db_username = "root";
       $db_password = "";
-      $db_name = "bbdd_usuarios";
+      $db_name = "bbdd_workershub";
       $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
       $sql = "INSERT INTO tabla_vacaciones(num_usuario, inicio_periodo, fin_periodo) VALUES (?, ?, ?)";
       $stmt = $conn->prepare($sql);
