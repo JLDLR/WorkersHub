@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TAREAS - NUEVA TAREA</title>
-  <link rel="stylesheet" href="estilos_tareas.css">
+  <title>WORKERHUB - NUEVA TAREA</title>
+  <link rel="stylesheet" href="estilos_workershub.css">
 </head>
 <body>
   <?php
-  include_once "ORMTareas.php";
+  include_once "ORMWrokersHub.php";
 
   if(!isset($_POST["guardar-tarea"])){
     echo
