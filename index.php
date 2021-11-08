@@ -12,14 +12,14 @@
     //-----------Bloque de funciones
     include_once 'ORMWorkersHub.php';
     //-----------Bloque de documento
-    if(!isset($_COOKIE["nombre_usuario"])){ //Si cuando entramos a index.php no existe la cookie de nombre de usuario, eso quiere decir que es nuestra primera visita.
+    if(!isset($_COOKIE["num_usuario"])){ //Si cuando entramos a index.php no existe la cookie de nombre de usuario, eso quiere decir que es nuestra primera visita.
       echo
       "
       <form method=\"POST\" action=\"login.php\">
       <button type=\"submit\">Log-In</button>
       </form>
       ";
-    }elseif(isset($_COOKIE["nombre_usuario"]) && !isset($_POST["verperfil"]) && !isset($_POST["mostrartareas"]) && !isset($_POST["cambio-de-estado"])){
+    }elseif(isset($_COOKIE["num_usuario"]) && !isset($_POST["verperfil"]) && !isset($_POST["mostrartareas"]) && !isset($_POST["cambio-de-estado"])){
       //Si cuando entramos a index.php existe la cookie de nombre de usuario pero no se ha tomado ninguna acción, mostramos los botones de perfil y de tareas.
       echo
       "
@@ -38,12 +38,12 @@
       <button type=\"submit\" name=\"mostrartareas\">Mostrar tareas</button>
       </form>
       ";
-    }elseif(isset($_COOKIE["nombre_usuario"]) && isset($_POST["mostrartareas"]) && !isset($_POST["cambio-de-estado"])){
+    }elseif(isset($_COOKIE["num_usuario"]) && isset($_POST["mostrartareas"]) && !isset($_POST["cambio-de-estado"])){
       //Si cuando entramos a index.php se ha tomado la decisión de mostrar tareas, pero no estamos marcando una tarea como completa o incompleta, entonces mostramos las tareas de usuario.
       $opcion = $_POST["opciontareas"];
-      $nombre_usuario = $_COOKIE["nombre_usuario"];
+      $num_usuario = $_COOKIE["num_usuario"];
       $tareas = null;
-      $tareas = mostrar_tareas($nombre_usuario, $opcion);
+      $tareas = mostrar_tareas($num_usuario, $opcion);
       if(isset($tareas)){
         foreach ($tareas as $indice => $tarea) {
           echo
@@ -89,7 +89,7 @@
         </form>
         ";
       }
-    }elseif(isset($_COOKIE["nombre_usuario"]) && isset($_POST["cambio-de-estado"])){
+    }elseif(isset($_COOKIE["num_usuario"]) && isset($_POST["cambio-de-estado"])){
       //Si cuando entramos al indice hemos tomado la decisión de cambiar el estado de terminación de la tarea, ejecutamos el cambio y volvemos a mostrar los botones de inicio.
       $id_tarea = $_POST["id-de-tarea"];
       $nuevo_estado = $_POST["nuevo-estado"];
@@ -114,16 +114,16 @@
       ";
     }
     // Cuando tenemos cookie de usuario y tomamos la decisión de ver el perfil, lo obtenemos y sacamos por pantalla al usuario.
-    if(isset($_POST["verperfil"]) && isset($_COOKIE["nombre_usuario"])){
-      $nombre_usuario = $_COOKIE["nombre_usuario"];
+    if(isset($_POST["verperfil"]) && isset($_COOKIE["num_usuario"])){
+      $num_usuario = $_COOKIE["num_usuario"];
       $usuario = null;
-      $usuario = obtener_perfil($nombre_usuario);
+      $usuario = obtener_perfil($num_usuario);
       if(isset($usuario)){
         echo //Primer echo. Generamos la tabla junto a las cabeceras y la información de usuario obligatoria.
         "
         <table>
           <tr>
-            <th>Nombre</th><th>Cargo</th><th>TElefono</th><th>E-Mail</th>
+            <th>Nombre</th><th>Cargo</th><th>Telefono</th><th>E-Mail</th>
           </tr>
           <tr>
             <td>".$usuario->nombre."</td>

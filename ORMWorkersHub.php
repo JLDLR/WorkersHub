@@ -2,11 +2,9 @@
     class Usuario{
       public $num_usuario;
       public $nombre;
-      public $contrasenna;
       public $cargo;
       public $telefono;
       public $email;
-      public $isAdmin;
     }
     class Tarea{
       public $titulo;
@@ -27,9 +25,9 @@
       $db_password = "";
       $db_name = "bbdd_workershub";
       $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
-      $sql = "SELECT num_usuario, nombre, cargo, telefono, email, isAdmin FROM tabla_usuarios WHERE num_usuario = ?";
+      $sql = "SELECT num_usuario, nombre, cargo, telefono, email FROM tabla_usuarios WHERE num_usuario = ?";
       $stmt = $conn->prepare($sql);
-      $stmt->bind_param("s", $num_usuario);
+      $stmt->bind_param("i", $num_usuario);
       $stmt->execute();
       $result = $stmt->get_result();
       $usuario = null;

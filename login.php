@@ -9,6 +9,14 @@
 </head>
 <body>
   <?php
+
+    class UsuarioLogin{
+      public $num_usuario;
+      public $nombre;
+      public $contrasenna;
+      public $cargo;
+    }
+
     //Bloque de funciones
     function validar_conexion($nombre_aportado, $contrasenna_aportada){
       $db_servername = "localhost";
@@ -16,18 +24,22 @@
       $db_password = "";
       $db_name = "bbdd_workershub";
       $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
-      $sql = "SELECT nombre, contrasenna FROM tabla_usuarios WHERE nombre = ? AND contrasenna = ?";
+      $sql = "SELECT num_usuario, nombre, contrasenna, cargo FROM tabla_usuarios WHERE nombre = ? AND contrasenna = ?";
       $stmt = $conn->prepare($sql);
       $stmt->bind_param("ss", $nombre_aportado, $contrasenna_aportada);
       $stmt->execute();
       $result = $stmt->get_result();
+      $usuarioLogin = null;
       if($result->num_rows > 0){
-        return true;
+        $usuarioLogin = $result->fetch_object("UsuarioLogin");
+        $stmt->close();
+        $conn->close();
+        return $usuarioLogin;
       }else{
+        $stmt->close();
+        $conn->close();
         return false;
       }
-      $stmt->close();
-      $conn->close();
     }
     //Bloque de documento
     echo
@@ -50,9 +62,13 @@
     if(isset($_POST["conectarme"])){
       $nombre = $_POST["nombre_aportado"];
       $contrasenna = $_POST["contrasenna_aportada"];
-      if( validar_conexion($nombre, $contrasenna) ){
-        setcookie("nombre_usuario", $_POST["nombre_aportado"], time() + (86400 * 30), "/");
+      $usuarioLogin = validar_conexion($nombre, $contrasenna);
+      if ($usuarioLogin) {
+        setcookie("num_usuario", $usuarioLogin->num_usuario, time() + (86400 * 30), "/");
+        setcookie("cargo", $usuarioLogin->cargo, time() + (86400 * 30), "/");
         header("Location: index.php");
+      }else{
+        echo "Este usuario no existe o la contraseña introducida es erronea.";
       }
     }
   ?>
