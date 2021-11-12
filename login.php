@@ -64,8 +64,8 @@
       $contrasenna = $_POST["contrasenna_aportada"];
       $usuarioLogin = validar_conexion($nombre, $contrasenna);
       if ($usuarioLogin) {
-        setcookie("num_usuario", $usuarioLogin->num_usuario, time() + (86400 * 30), "/");
-        setcookie("cargo", $usuarioLogin->cargo, time() + (86400 * 30), "/");
+        setcookie("num_usuario", $usuarioLogin->num_usuario, time() + (86400 * 0.25), "/");
+        setcookie("cargo", $usuarioLogin->cargo, time() + (86400 * 0-25), "/");
         header("Location: index.php");
       }else{
         echo "Este usuario no existe o la contraseña introducida es erronea.";

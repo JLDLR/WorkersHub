@@ -20,7 +20,7 @@
       </form>
       ";
     }elseif(isset($_COOKIE["num_usuario"]) && !isset($_POST["verperfil"]) && !isset($_POST["mostrartareas"]) && !isset($_POST["cambio-de-estado"])){
-      //Si cuando entramos a index.php existe la cookie de nombre de usuario pero no se ha tomado ninguna acción, mostramos los botones de perfil y de tareas.
+      //Si cuando entramos a index.php existe la cookie de nombre de usuario pero no se ha tomado ninguna acción, mostramos los botones de perfil, de tareas y de log-out.
       echo
       "
       <form method=\"POST\" action=\"index.php\">
@@ -36,6 +36,11 @@
         <option value=\"completa\">Tareas completas</option>
       </select>
       <button type=\"submit\" name=\"mostrartareas\">Mostrar tareas</button>
+      </form>
+      ";
+      echo "
+      <form method=\"POST\" action=\"index.php\">
+      <button type=\"submit\" name=\"logout\">Desconectarme</button>
       </form>
       ";
     }elseif(isset($_COOKIE["num_usuario"]) && isset($_POST["mostrartareas"]) && !isset($_POST["cambio-de-estado"])){
@@ -80,13 +85,15 @@
             ";
           }
         }
-        //Por último, creamos el botón para añadir una nueva tarea
+        //Por último, creamos el botón para añadir una nueva tarea y para volver
         echo
         "
         <br>
         <form method=\"POST\" action=\"nueva_tarea.php\">
         <button type=\"submit\" name=\"crear-tarea\">Crear tarea</button>
         </form>
+        <br>
+        <a href=\"index.php\">Volver al índice</a>
         ";
       }
     }elseif(isset($_COOKIE["num_usuario"]) && isset($_POST["cambio-de-estado"])){
@@ -143,6 +150,12 @@
         <a href=\"index.php\">Volver</a>
         ";
       }
+    }
+    //Log-out
+    if(isset($_POST["logout"]) && isset($_COOKIE["num_usuario"])){
+      setcookie("num_usuario", "", time() - 3600, "/");
+      setcookie("cargo", "", time() - 3600, "/");
+      header("Location: index.php");
     }
   ?>
 </body>

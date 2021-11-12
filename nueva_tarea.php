@@ -9,7 +9,7 @@
 </head>
 <body>
   <?php
-  include_once "ORMWrokersHub.php";
+  include_once "ORMWorkersHub.php";
 
   if(!isset($_POST["guardar-tarea"])){
     echo
@@ -28,11 +28,11 @@
     </form>
     ";
     echo "<br><a href=\"index.php\">Volver al índice</a>";
-  }elseif(isset($_COOKIE["nombre_usuario"]) && isset($_POST["guardar-tarea"])){
+  }elseif(isset($_COOKIE["num_usuario"]) && isset($_POST["guardar-tarea"])){
     $titulo = $_POST["titulo"];
     $descripcion = $_POST["descripcion"];
     $fecha_entrega = $_POST["fecha-entrega"];
-    $usuario = $_COOKIE["nombre_usuario"];
+    $usuario = $_COOKIE["num_usuario"];
     crear_tarea($usuario, $titulo, $descripcion, $fecha_entrega);
 
     echo
