@@ -20,11 +20,17 @@
       </form>
       ";
     }elseif(isset($_COOKIE["num_usuario"]) && !isset($_POST["verperfil"]) && !isset($_POST["mostrartareas"]) && !isset($_POST["cambio-de-estado"])){
-      //Si cuando entramos a index.php existe la cookie de nombre de usuario pero no se ha tomado ninguna acción, mostramos los botones de perfil, de tareas y de log-out.
+      //Si cuando entramos a index.php existe la cookie de nombre de usuario pero no se ha tomado ninguna acción, mostramos los necesarios.
       echo
       "
       <form method=\"POST\" action=\"index.php\">
       <button type=\"submit\" name=\"verperfil\">Ver perfil</button>
+      </form>
+      ";
+      echo
+      "
+      <form method=\"POST\" acion=\"directorio.php\">
+      <button type=\"submit\" name=\"verdirectorio\"Consultar directorio</button>
       </form>
       ";
       echo
