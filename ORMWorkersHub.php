@@ -5,6 +5,7 @@
       public $cargo;
       public $telefono;
       public $email;
+      public $delegacion;
     }
     class Tarea{
       public $titulo;
@@ -25,7 +26,7 @@
       $db_password = "";
       $db_name = "bbdd_workershub";
       $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
-      $sql = "SELECT num_usuario, nombre, cargo, telefono, email FROM tabla_usuarios WHERE num_usuario = ?";
+      $sql = "SELECT num_usuario, nombre, cargo, telefono, email, delegacion FROM tabla_usuarios WHERE num_usuario = ?";
       $stmt = $conn->prepare($sql);
       $stmt->bind_param("i", $num_usuario);
       $stmt->execute();
@@ -53,6 +54,28 @@
 
       return $usuario;
     }
+    function empleados_por_delegacion($delegacion){
+      $db_servername = "localhost";
+      $db_username = "root";
+      $db_password = "";
+      $db_name = "bbdd_workershub";
+      $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
+      $sql = "SELECT num_usuario, nombre, cargo, telefono, email FROM tabla_usuarios WHERE delegacion = ?";
+      $stmt = $conn->prepare($sql);
+      $stmt->bind_param("s", $delegacion);
+      $stmt->execute();
+      $result = $stmt->get_result();
+      $empleados = [];
+      if($result->num_rows > 0){
+        while($row = $result->fetch_object("Usuario")) {
+          array_push($empleados, $row);
+        }
+      }
+      $stmt->close();
+      $conn->close();
+      return $empleados;
+    }
+
     function mostrar_tareas($num_usuario, $opcion){
       $db_servername = "localhost";
       $db_username = "root";

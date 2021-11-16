@@ -8,6 +8,8 @@
 </head>
 <body>
 <?php
+    include_once 'ORMWorkersHub.php';
+
     if(!isset($_POST["mostrardelegaciones"])){
         echo
         "
@@ -44,6 +46,7 @@
                     <td>".$usuario->cargo."</td>
                     <td>".$usuario->telefono."</td>
                     <td>".$usuario->email."</td>
+                    <td>".$usuario->delegacion."</td>
                 </tr>
                 ";
             }
