@@ -26,6 +26,7 @@
         <button type=\"submit\" name=\"mostrardelegaciones\">Mostrar delegaciones</button>
         </form>
         ";
+        echo "<a href=\"index.php\">Volver al índice</a>";
     }else{
         $opcion = $_POST["opciondelegaciones"];
         $empleados = null;
@@ -35,18 +36,18 @@
             "
             <table>
             <tr>
-                <th>Nombre</th><th>Cargo</th><th>Telefono</th><th>E-Mail</th>
+                <th>Nombre</th><th>Cargo</th><th>Telefono</th><th>E-Mail</th><th>Delegación</th>
             </tr>
             ";
             foreach ($empleados as $indice => $empleado) {
                 echo
                 "
                 <tr>
-                    <td>".$usuario->nombre."</td>
-                    <td>".$usuario->cargo."</td>
-                    <td>".$usuario->telefono."</td>
-                    <td>".$usuario->email."</td>
-                    <td>".$usuario->delegacion."</td>
+                    <td>".$empleado->nombre."</td>
+                    <td>".$empleado->cargo."</td>
+                    <td>".$empleado->telefono."</td>
+                    <td>".$empleado->email."</td>
+                    <td>".$empleado->delegacion."</td>
                 </tr>
                 ";
             }
@@ -54,6 +55,7 @@
             "
             </table>
             ";
+            echo "<a href=\"directorio.php\">Volver</a>";
         }
     }
 ?>

@@ -60,7 +60,7 @@
       $db_password = "";
       $db_name = "bbdd_workershub";
       $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
-      $sql = "SELECT num_usuario, nombre, cargo, telefono, email FROM tabla_usuarios WHERE delegacion = ?";
+      $sql = "SELECT num_usuario, nombre, cargo, telefono, email, delegacion FROM tabla_usuarios WHERE delegacion = ?";
       $stmt = $conn->prepare($sql);
       $stmt->bind_param("s", $delegacion);
       $stmt->execute();

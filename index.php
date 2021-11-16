@@ -29,8 +29,8 @@
       ";
       echo
       "
-      <form method=\"POST\" acion=\"directorio.php\">
-      <button type=\"submit\" name=\"verdirectorio\"Consultar directorio</button>
+      <form method=\"POST\" action=\"directorio.php\">
+      <button type=\"submit\" name=\"verdirectorio\">Consultar directorio</button>
       </form>
       ";
       echo
@@ -44,7 +44,8 @@
       <button type=\"submit\" name=\"mostrartareas\">Mostrar tareas</button>
       </form>
       ";
-      echo "
+      echo
+      "
       <form method=\"POST\" action=\"index.php\">
       <button type=\"submit\" name=\"logout\">Desconectarme</button>
       </form>
