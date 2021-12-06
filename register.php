@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WORKERHUB-REGISTRO  DE USUARIOS</title>
-  <link rel="stylesheet" href="estilos_workershub.css">
+  <link rel="stylesheet" href="estilos_workershub2.css">
 </head>
 <body>
   <?php
@@ -26,7 +26,7 @@
     //Bloque de documento
     echo
     "
-    <form method=\"POST\" action=\"register.php\">
+    <form method=\"POST\" id=\"form-registro\" action=\"register.php\">
       <label for=\"nombre\">Nombre:</label>
       <input type=\"text\" name=\"nombre\" id=\"nombre\" required>
       <br>
@@ -44,6 +44,8 @@
       <br>
       <button type=\"submit\" name=\"registrar_usuario\">Registrar usuario</button>
     </form>
+
+    <a id=\"register-return\" href=\"index.php\">Volver al índice</a>
     ";
     //Bloque de logica
     if(isset($_POST["registrar_usuario"])){

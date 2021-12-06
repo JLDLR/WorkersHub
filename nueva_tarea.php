@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WORKERHUB - NUEVA TAREA</title>
-  <link rel="stylesheet" href="estilos_workershub.css">
+  <link rel="stylesheet" href="estilos_workershub2.css">
 </head>
 <body>
   <?php
@@ -14,7 +14,7 @@
   if(!isset($_POST["guardar-tarea"])){
     echo
     "
-    <form method=\"POST\" action=\"nueva_tarea.php\">
+    <form class=\"nueva_tarea_form\" method=\"POST\" action=\"nueva_tarea.php\">
       <label for=\"titulo\">Título:</label>
       <input type=\"text\" name=\"titulo\" required>
       <br>
@@ -27,7 +27,7 @@
       <button type=\"submit\" name=\"guardar-tarea\">Guardar tarea</button>
     </form>
     ";
-    echo "<br><a href=\"index.php\">Volver al índice</a>";
+    echo "<br><a class=\"link_return_newtask\" href=\"index.php\">Volver al índice</a>";
   }elseif(isset($_COOKIE["num_usuario"]) && isset($_POST["guardar-tarea"])){
     $titulo = $_POST["titulo"];
     $descripcion = $_POST["descripcion"];

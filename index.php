@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WORKERHUB - INDICE</title>
-  <link rel="stylesheet" href="estilos_workershub.css">
+  <link rel="stylesheet" href="estilos_workershub2.css">
 </head>
 <body>
   <?php
@@ -15,12 +15,13 @@
     if(!isset($_COOKIE["num_usuario"])){ //Si cuando entramos a index.php no existe la cookie de nombre de usuario, eso quiere decir que es nuestra primera visita.
       echo
       "
-      <form method=\"POST\" action=\"login.php\">
-      <button type=\"submit\">Log-In</button>
+      <form method=\"POST\" id=\"form-boton-login\" action=\"login.php\">
+      <button type=\"submit\" id=\"login\">Log-In</button>
       </form>
       ";
     }elseif(isset($_COOKIE["num_usuario"]) && !isset($_POST["verperfil"]) && !isset($_POST["mostrartareas"]) && !isset($_POST["cambio-de-estado"])){
       //Si cuando entramos a index.php existe la cookie de nombre de usuario pero no se ha tomado ninguna acción, mostramos los necesarios.
+      echo "<div class=\"contenedor-botonera-indice-logged\">";
       echo
       "
       <form method=\"POST\" action=\"index.php\">
@@ -35,13 +36,13 @@
       ";
       echo
       "
-      <form method=\"POST\" action=\"index.php\">
-      <select name=\"opciontareas\" id=\"opciontareas\" required>
+      <form method=\"POST\" id=\"form-indice-accion-mostrar-tareas\" action=\"index.php\">
+      <button type=\"submit\" name=\"mostrartareas\">Mostrar tareas</button>
+      <select name=\"opciontareas\" class=\"selector-mostrar-tareas\" id=\"opciontareas\" required>
         <option value=\"todas\" selected>Todas las tareas</option>
         <option value=\"incompleta\">Tareas incompletas</option>
         <option value=\"completa\">Tareas completas</option>
       </select>
-      <button type=\"submit\" name=\"mostrartareas\">Mostrar tareas</button>
       </form>
       ";
       echo
@@ -50,6 +51,7 @@
       <button type=\"submit\" name=\"logout\">Desconectarme</button>
       </form>
       ";
+      echo "</div>";
     }elseif(isset($_COOKIE["num_usuario"]) && isset($_POST["mostrartareas"]) && !isset($_POST["cambio-de-estado"])){
       //Si cuando entramos a index.php se ha tomado la decisión de mostrar tareas, pero no estamos marcando una tarea como completa o incompleta, entonces mostramos las tareas de usuario.
       $opcion = $_POST["opciontareas"];
@@ -57,6 +59,7 @@
       $tareas = null;
       $tareas = mostrar_tareas($num_usuario, $opcion);
       if(isset($tareas)){
+        echo "<div class=\"contenedor_tareas_en_pantalla\">";
         foreach ($tareas as $indice => $tarea) {
           echo
           "
@@ -69,7 +72,7 @@
           <button type=\"submit\" name=\"vertarea\">".$tarea->titulo."</button>
           </form>
           ";
-          //Después de haber creado el botón de la tarea, creamos sus botones de estado de terminación de la tarea.
+          //Después de haber creado el botón de la tarea, creamos sus botones de estado de terminación de la tarea y de borrado.
           if($tarea->estado == "incompleta"){
             echo
             "
@@ -78,7 +81,6 @@
             <input class=\"invisible\" type=\"text\" name=\"nuevo-estado\" value=\"completa\">
             <button type=\"submit\" name=\"cambio-de-estado\">Completada (Confirmar)</button>
             </form>
-            <br>
             ";
           }else{
             echo
@@ -88,19 +90,27 @@
             <input class=\"invisible\" type=\"text\" name=\"nuevo-estado\" value=\"incompleta\">
             <button type=\"submit\" name=\"cambio-de-estado\">Incompleta (Confirmar)</button>
             </form>
-            <br>
             ";
           }
+          echo
+          "
+          <form method=\"POST\" action=\"index.php\">
+          <input class=\"invisible\" type=\"number\" name=\"id-de-tarea\" value=\"".$tarea->id_tarea."\">
+          <button type=\"submit\" name=\"borrado_de_tarea\">Eliminar tarea</button>
+          </form>
+          <br>
+          ";
         }
+        echo "</div>";
         //Por último, creamos el botón para añadir una nueva tarea y para volver
         echo
         "
         <br>
         <form method=\"POST\" action=\"nueva_tarea.php\">
-        <button type=\"submit\" name=\"crear-tarea\">Crear tarea</button>
+        <button id=\"boton-crear-nueva-tarea\" type=\"submit\" name=\"crear-tarea\">Crear tarea</button>
         </form>
         <br>
-        <a href=\"index.php\">Volver al índice</a>
+        <a class=\"link_return\" href=\"index.php\">Volver al índice</a>
         ";
       }
     }elseif(isset($_COOKIE["num_usuario"]) && isset($_POST["cambio-de-estado"])){
@@ -109,6 +119,7 @@
       $nuevo_estado = $_POST["nuevo-estado"];
       alterar_estado($id_tarea, $nuevo_estado);
 
+      echo "<div class=\"contenedor-botonera-indice-logged\">";
       echo
       "
       <form method=\"POST\" action=\"index.php\">
@@ -117,15 +128,66 @@
       ";
       echo
       "
-      <form method=\"POST\" action=\"index.php\">
-      <select name=\"opciontareas\" id=\"opciontareas\" required>
+      <form method=\"POST\" action=\"directorio.php\">
+      <button type=\"submit\" name=\"verdirectorio\">Consultar directorio</button>
+      </form>
+      ";
+      echo
+      "
+      <form method=\"POST\" id=\"form-indice-accion-mostrar-tareas\" action=\"index.php\">
+      <button type=\"submit\" name=\"mostrartareas\">Mostrar tareas</button>
+      <select name=\"opciontareas\" class=\"selector-mostrar-tareas\" id=\"opciontareas\" required>
         <option value=\"todas\" selected>Todas las tareas</option>
         <option value=\"incompleta\">Tareas incompletas</option>
         <option value=\"completa\">Tareas completas</option>
       </select>
-      <button type=\"submit\" name=\"mostrartareas\">Mostrar tareas</button>
       </form>
       ";
+      echo
+      "
+      <form method=\"POST\" action=\"index.php\">
+      <button type=\"submit\" name=\"logout\">Desconectarme</button>
+      </form>
+      ";
+      echo "</div>";
+
+    }elseif(isset($_COOKIE["num_usuario"]) && isset($_POST["borrado_de_tarea"])){
+      //Si al entrar al indice hemos tomado la decisión de borrar la tarea, ejecutamos el borrado y volvemos a mostrar la botonera de inicio.
+      $id_tarea = $_POST["id-de-tarea"];
+      $num_usuario = $_COOKIE["num_usuario"];
+      eliminar_tarea($id_tarea, $num_usuario);
+
+      echo "<div class=\"contenedor-botonera-indice-logged\">";
+      echo
+      "
+      <form method=\"POST\" action=\"index.php\">
+      <button type=\"submit\" name=\"verperfil\">Ver perfil</button>
+      </form>
+      ";
+      echo
+      "
+      <form method=\"POST\" action=\"directorio.php\">
+      <button type=\"submit\" name=\"verdirectorio\">Consultar directorio</button>
+      </form>
+      ";
+      echo
+      "
+      <form method=\"POST\" id=\"form-indice-accion-mostrar-tareas\" action=\"index.php\">
+      <button type=\"submit\" name=\"mostrartareas\">Mostrar tareas</button>
+      <select name=\"opciontareas\" class=\"selector-mostrar-tareas\" id=\"opciontareas\" required>
+        <option value=\"todas\" selected>Todas las tareas</option>
+        <option value=\"incompleta\">Tareas incompletas</option>
+        <option value=\"completa\">Tareas completas</option>
+      </select>
+      </form>
+      ";
+      echo
+      "
+      <form method=\"POST\" action=\"index.php\">
+      <button type=\"submit\" name=\"logout\">Desconectarme</button>
+      </form>
+      ";
+      echo "</div>";
     }
     // Cuando tenemos cookie de usuario y tomamos la decisión de ver el perfil, lo obtenemos y sacamos por pantalla al usuario.
     if(isset($_POST["verperfil"]) && isset($_COOKIE["num_usuario"])){
@@ -137,9 +199,10 @@
         "
         <table>
           <tr>
-            <th>Nombre</th><th>Cargo</th><th>Telefono</th><th>E-Mail</th>
+            <th></th><th>Nombre</th><th>Cargo</th><th>Telefono</th><th>E-Mail</th>
           </tr>
           <tr>
+            <td><img src=\"".$usuario->image_path."\"></td>
             <td>".$usuario->nombre."</td>
             <td>".$usuario->cargo."</td>
             <td>".$usuario->telefono."</td>
@@ -154,7 +217,7 @@
         "
           </tr>
         </table>
-        <a href=\"index.php\">Volver</a>
+        <a href=\"index.php\" class=\"boton-vuelta-indice-general\">Volver al índice</a>
         ";
       }
     }

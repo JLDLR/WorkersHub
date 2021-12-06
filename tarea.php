@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WORKERHUB - VISUALIZAR TAREA</title>
-  <link rel="stylesheet" href="estilos_workershub.css">
+  <link rel="stylesheet" href="estilos_workershub2.css">
 </head>
 <body>
 <?php
@@ -13,10 +13,11 @@ include_once 'ORMWorkersHub.php';
 echo "<a href=\"index.php\">Volver al índice</a><br>";
 
 if(isset($_POST["vertarea"])){
-  echo "<br>";
+  echo "<div class=\"informacion-de-tarea\">";
   echo "Título: ".$_POST["titulo-de-tarea"];
   echo "<br>";
   echo "Descripción: ".$_POST["descripcion-de-tarea"];
+  echo "</div>";
   if($_POST["estado"] == "incompleta"){
     echo
     "
@@ -40,9 +41,11 @@ if(isset($_POST["vertarea"])){
   $nuevo_estado = $_POST["nuevo-estado"];
   alterar_estado($id_tarea, $nuevo_estado);
   $tarea = mostrar_una_tarea($id_tarea);
+  echo "<div class=\"informacion-de-tarea\">";
   echo $tarea->titulo;
   echo "<br>";
   echo $tarea->descripcion;
+  echo "</div>";
   if($tarea->estado == "incompleta"){
     echo
     "

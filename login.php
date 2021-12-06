@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WORKERHUB-LOGIN</title>
-  <link rel="stylesheet" href="estilos_workershub.css">
+  <link rel="stylesheet" href="estilos_workershub2.css">
 </head>
 <body>
   <?php
@@ -44,19 +44,19 @@
     //Bloque de documento
     echo
     "
-    <form method=\"POST\" action=\"login.php\">
-      <label for=\"nombre_aportado\">Nombre de usuario:</label>
-      <input type=\"text\" name=\"nombre_aportado\" id=\"nombre_aportado\" required><br>
-      <label for\"contrasenna_aportada\">Contraseña:</label>
-      <input type=\"password\" name=\"contrasenna_aportada\" id=\"contrasenna_aportada\" required><br>
-      <button type=\"submit\" name=\"conectarme\">Conectarse</button>
-    </form>
-
-    <br>
-
-    <form method=\"POST\" action=\"register.php\">
-      <button type=\"submit\">Registrarse</button>
-    </form>
+    <div class=\"contenedor-form-login\">
+      <form method=\"POST\" action=\"login.php\">
+        <label for=\"nombre_aportado\">Nombre de usuario:</label>
+        <input type=\"text\" name=\"nombre_aportado\" id=\"nombre_aportado\" required><br>
+        <label for\"contrasenna_aportada\">Contraseña:</label>
+        <input type=\"password\" name=\"contrasenna_aportada\" id=\"contrasenna_aportada\" required><br>
+        <button type=\"submit\" name=\"conectarme\">Conectarse</button>
+      </form>
+      <br>
+      <form method=\"POST\" id=\"form-boton-registro\" action=\"register.php\">
+        <button type=\"submit\">Registrarse</button>
+      </form>
+    </div>
     ";
     //Bloque de logica
     if(isset($_POST["conectarme"])){

@@ -1,6 +1,7 @@
 <?php
     class Usuario{
       public $num_usuario;
+      public $image_path;
       public $nombre;
       public $cargo;
       public $telefono;
@@ -26,7 +27,7 @@
       $db_password = "";
       $db_name = "bbdd_workershub";
       $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
-      $sql = "SELECT num_usuario, nombre, cargo, telefono, email, delegacion FROM tabla_usuarios WHERE num_usuario = ?";
+      $sql = "SELECT num_usuario, image_path, nombre, cargo, telefono, email, delegacion FROM tabla_usuarios WHERE num_usuario = ?";
       $stmt = $conn->prepare($sql);
       $stmt->bind_param("i", $num_usuario);
       $stmt->execute();
@@ -60,9 +61,14 @@
       $db_password = "";
       $db_name = "bbdd_workershub";
       $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
-      $sql = "SELECT num_usuario, nombre, cargo, telefono, email, delegacion FROM tabla_usuarios WHERE delegacion = ?";
-      $stmt = $conn->prepare($sql);
-      $stmt->bind_param("s", $delegacion);
+      if($delegacion = "todas"){
+        $sql = "SELECT num_usuario, image_path, nombre, cargo, telefono, email, delegacion FROM tabla_usuarios";
+        $stmt = $conn->prepare($sql);
+      }else{
+        $sql = "SELECT num_usuario, image_path, nombre, cargo, telefono, email, delegacion FROM tabla_usuarios WHERE delegacion = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $delegacion);
+      }
       $stmt->execute();
       $result = $stmt->get_result();
       $empleados = [];
@@ -75,7 +81,6 @@
       $conn->close();
       return $empleados;
     }
-
     function mostrar_tareas($num_usuario, $opcion){
       $db_servername = "localhost";
       $db_username = "root";
@@ -174,7 +179,19 @@
       $stmt->close();
       $conn->close();
     }
-
+    function eliminar_tarea($id_tarea, $num_usuario){
+      $db_servername = "localhost";
+      $db_username = "root";
+      $db_password = "";
+      $db_name = "bbdd_workershub";
+      $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
+      $sql = "DELETE FROM tabla_tareas WHERE id_tarea = ? AND num_usuario = ?";
+      $stmt = $conn->prepare($sql);
+      $stmt->bind_param("ii", $id_tarea, $num_usuario);
+      $stmt->execute();
+      $stmt->close();
+      $conn->close();
+    }
     function crear_reserva($num_usuario, $inicio_periodo, $final_periodo){
       $db_servername = "localhost";
       $db_username = "root";

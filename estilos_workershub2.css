@@ -1,0 +1,237 @@
+body{
+  background-color: #4568a1;
+  background-image: url("images/logotipo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+button{
+  width: 300px;
+  height: 50px;
+  font-size: 24px;
+  border: 2px solid blue;
+  background-color: lightblue;
+  color: white;
+  font-family: math;
+  text-shadow: 2px 1px 0px black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  justify-self: center;
+}
+table, th, td{
+  font-size: 24px;
+  border: 1px solid blue;
+  border-collapse: collapse;
+  background-color: lightblue;
+  color: white;
+  font-family: math;
+  text-shadow: 2px 1px 0px black;
+  padding: 10px;
+  text-align: center;
+  margin-top: 325px;
+  margin-bottom: 75px;
+  margin-left: 23%;
+}
+td{
+  min-width: 150px;
+}
+td img{
+  width: 150px;
+  height: 150px;
+  border: 1px solid white;
+}
+.boton-vuelta-indice-general{
+  color: white;
+  text-decoration: none;
+  font-size: 24px;
+  border: 2px solid black;
+  border-radius: 15px;
+  padding: 15px;
+  background-color: lightblue;
+  text-shadow: 1.5px 1px black;
+  margin-left: 46%;
+}
+.invisible{
+  display: none;
+}
+input{
+  margin: 5px;
+}
+form#form-boton-login{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-self: center;
+  justify-self: center;
+  margin-top: 250px;
+}
+.contenedor-form-login{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 250px;
+  justify-self: center;
+  align-self: center;
+}
+.contenedor-form-login form{
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+.contenedor-form-login form#form-boton-registro{
+  display: flex;
+  flex-direction: column;
+  margin-top: 133px;
+  margin-left: 33px;
+}
+form#form-registro{
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+  justify-self: center;
+  align-self: center;
+  margin-top: 250px;
+  margin-left: 33%;
+}
+
+a{
+  color:white;
+  text-decoration: none;
+  font-size: 24px;
+}
+a#register-return{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+  font-size: 24px;
+}
+.contenedor-botonera-indice-logged{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 250px;
+}
+
+.contenedor-botonera-indice-logged form{
+  margin-top: 42px;
+}
+
+#form-indice-accion-mostrar-tareas{
+  display: flex;
+  justify-content: center;
+  margin-left: 212px;
+}
+
+.selector-mostrar-tareas{
+  background-color: lightblue;
+  color: white;
+  border: 2px solid blue;
+  font-family: math;
+  font-size: 22px;
+  text-shadow: 2px 1px 0 BLACK;
+  margin-left: 20px;
+}
+.contenedor-selector-directorio{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 300px;
+}
+.contenedor-selector-directorio a{
+  margin-left: 35px;
+}
+.contenedor-selector-directorio form{
+  display: flex;
+}
+.contenedor-selector-directorio select{
+  background-color: lightblue;
+  color: white;
+  border: 2px solid blue;
+  font-family: math;
+  font-size: 22px;
+  text-shadow: 1.5px 1px 0 BLACK;
+  margin-left: 20px;
+  padding: 10px;
+  height: 50px;
+  border-right: 1px;
+}
+.contenedor-selector-directorio button{
+  width: 300px;
+  height: 50px;
+  font-size: 24px;
+  border: 2px solid blue;
+  background-color: lightblue;
+  color: white;
+  font-family: math;
+  text-shadow: 1.5px 1px 0px black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  justify-self: center;
+}
+.enlace-directorio-retorno{
+  margin-top: 250px;
+  display: block;
+  margin-left: 75%;
+  border: 1px solid black;
+  border-radius: 15px;
+  padding: 10px;
+  background-color: lightblue;
+  color: white;
+  font-family: math;
+  text-shadow: 1.5px 1px 0 BLACK;
+  max-width: fit-content;
+  margin-bottom: 5px;
+}
+.tabla-empleados{
+  margin-top: 0;
+}
+.nueva_tarea_form{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  align-items: center;
+  margin-left: 25%;
+  margin-top: 250px;
+  font-family: math;
+  font-size: 24px;
+  color: white;
+  background-color: lightblue;
+  border: 3px solid white;
+  border-radius: 10px;
+  text-shadow: 1.5px 1px black;
+}
+.nueva_tarea_form button{
+  background-color: lightgray;
+  border: 2px solid grey;
+  color: black;
+  text-shadow: none;
+}
+.link_return{
+  display: flex;
+  justify-content: space-around;
+}
+#boton-crear-nueva-tarea{
+  margin-left: 775px;
+}
+.contenedor_tareas_en_pantalla{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 250px;
+}
+.informacion-de-tarea{
+  display: flex;
+  justify-content: center;
+  border: 3px solid white;
+  background-color: lightblue;
+  min-height: 100px;
+  margin-top: 250px;
+  font-family: math;
+  font-size: 32px;
+  padding: 5px;
+}
