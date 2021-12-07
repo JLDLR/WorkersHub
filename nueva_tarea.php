@@ -34,10 +34,10 @@
     $fecha_entrega = $_POST["fecha-entrega"];
     $usuario = $_COOKIE["num_usuario"];
     crear_tarea($usuario, $titulo, $descripcion, $fecha_entrega);
-
+    echo "<p>Tarea guardada con éxito.</p>";
     echo
     "
-    <form method=\"POST\" action=\"nueva_tarea.php\">
+    <form class=\"nueva_tarea_form\" method=\"POST\" action=\"nueva_tarea.php\">
       <label for=\"titulo\">Título:</label>
       <input type=\"text\" name=\"titulo\" required>
       <br>

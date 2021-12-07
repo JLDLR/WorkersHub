@@ -24,7 +24,7 @@
       $id_tarea = $_POST["id-de-tarea"];
       $num_usuario = $_COOKIE["num_usuario"];
       eliminar_tarea($id_tarea, $num_usuario);
-      echo "Eliminado.";
+      echo "Tarea eliminada.";
       echo "<div class=\"contenedor-botonera-indice-logged\">";
       echo
       "
