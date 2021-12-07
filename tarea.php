@@ -14,9 +14,9 @@ echo "<a href=\"index.php\">Volver al índice</a><br>";
 
 if(isset($_POST["vertarea"])){
   echo "<div class=\"informacion-de-tarea\">";
-  echo "Título: ".$_POST["titulo-de-tarea"];
+  echo $_POST["titulo-de-tarea"];
   echo "<br>";
-  echo "Descripción: ".$_POST["descripcion-de-tarea"];
+  echo $_POST["descripcion-de-tarea"];
   echo "</div>";
   if($_POST["estado"] == "incompleta"){
     echo
