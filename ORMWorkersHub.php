@@ -61,7 +61,7 @@
       $db_password = "";
       $db_name = "bbdd_workershub";
       $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
-      if($delegacion = "todas"){
+      if($delegacion == "todas"){
         $sql = "SELECT num_usuario, image_path, nombre, cargo, telefono, email, delegacion FROM tabla_usuarios";
         $stmt = $conn->prepare($sql);
       }else{
