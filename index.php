@@ -19,6 +19,48 @@
       <button type=\"submit\" id=\"login\">Log-In</button>
       </form>
       ";
+    }elseif( isset($_POST["iniciar_jornada"]) && isset($_COOKIE["num_usuario"]) ){
+      $num_usuario = $_COOKIE["num_usuario"];
+      registrar_inicio_jornada($num_usuario);
+
+      echo "<div class=\"contenedor-botonera-indice-logged\">";
+      echo
+      "
+      <form method=\"POST\" action=\"index.php\">
+      <button type=\"submit\" name=\"verperfil\">Ver perfil</button>
+      </form>
+      ";
+      echo
+      "
+      <form method=\"POST\" action=\"directorio.php\">
+      <button type=\"submit\" name=\"verdirectorio\">Consultar directorio</button>
+      </form>
+      ";
+      echo
+      "
+      <form method=\"POST\" id=\"form-indice-accion-mostrar-tareas\" action=\"index.php\">
+      <button type=\"submit\" name=\"mostrartareas\">Mostrar tareas</button>
+      <select name=\"opciontareas\" class=\"selector-mostrar-tareas\" id=\"opciontareas\" required>
+        <option value=\"todas\" selected>Todas las tareas</option>
+        <option value=\"incompleta\">Tareas incompletas</option>
+        <option value=\"completa\">Tareas completas</option>
+      </select>
+      </form>
+      ";
+      echo
+      "
+      <form method=\"POST\" action=\"index.php\">
+      <input type=\"text\" name=\"fin-jornada\" id=\"fin-jornada\" class=\"invisible\">
+      <button type=\"submit\" name=\"finalizar_jornada\">Finalizar jornada</button>
+      </form>
+      ";
+      echo
+      "
+      <form method=\"POST\" action=\"index.php\">
+      <button type=\"submit\" name=\"logout\">Desconectarme</button>
+      </form>
+      ";
+      echo "</div>";
     }elseif(isset($_COOKIE["num_usuario"]) && isset($_POST["borrado_de_tarea"])){
       //Si al entrar al indice hemos tomado la decisión de borrar la tarea, ejecutamos el borrado y volvemos a mostrar la botonera de inicio.
       $id_tarea = $_POST["id-de-tarea"];
@@ -80,6 +122,12 @@
         <option value=\"incompleta\">Tareas incompletas</option>
         <option value=\"completa\">Tareas completas</option>
       </select>
+      </form>
+      ";
+      echo
+      "
+      <form method=\"POST\" action=\"index.php\">
+      <button type=\"submit\" name=\"iniciar_jornada\">Iniciar jornada</button>
       </form>
       ";
       echo
@@ -229,5 +277,6 @@
       header("Location: index.php");
     }
   ?>
+
 </body>
 </html>

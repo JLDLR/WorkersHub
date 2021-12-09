@@ -205,4 +205,19 @@
       $stmt->close();
       $conn->close();
     }
+    function registrar_inicio_jornada($num_usuario){
+      $date=date("d/m/y");
+      $time=date("h:i:sa");
+      $db_servername = "localhost";
+      $db_username = "root";
+      $db_password = "";
+      $db_name = "bbdd_workershub";
+      $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
+      $sql = "INSERT INTO tabla_registros_horarios(num_usuario, dia_del_mes, inicio_jornada) VALUES (?, ?, ?)";
+      $stmt = $conn->prepare($sql);
+      $stmt->bind_param("iss", $num_usuario, $date, $time);
+      $stmt->execute();
+      $stmt->close();
+      $conn->close();
+    }
     ?>
